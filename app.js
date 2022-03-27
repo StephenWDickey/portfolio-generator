@@ -1,4 +1,5 @@
-
+const fs = require('fs');
+const generatePage = require('./src/page-template.js');
 
 // we make sure inquirer is required
 const inquirer = require('inquirer');
@@ -183,7 +184,13 @@ const promptProject = portfolioData => {
 // here we are chaining together multiple functions using promises
 // the order matters! we ask about project after we get profile questions
 promptUser().then(promptProject).then(portfolioData => {
-    console.log(portfolioData);
+    const pageHTML = generatePage(portfolioData);
+
+    fs.writeFile('./index.html', pageHTML, err => {
+        if (err) throw new Error(err);
+
+        console.log('Page created! Check out index.html in this directory to see it!');
+    });
 });
 
 
@@ -191,20 +198,8 @@ promptUser().then(promptProject).then(portfolioData => {
 ////////////////////////////////////////////////
 
 
-// we commented out this code for now
-/* const fs = require('fs');
-const generatePage = require('./src/page-template.js');
 
-// import temperate literal 
-const pageHTML = generatePage(name, github);
 
-// fs.writeFile() takes 3 arguments: name, template literal, and callback function for errors
-fs.writeFile('index.html', pageHTML, err => {
-    if (err) throw err;
-
-    console.log ('Portfolio complete! See index.html for output!');
-
-}); */
 
 
 
