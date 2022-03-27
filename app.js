@@ -13,12 +13,33 @@ const promptUser = () => {
             // we give the key value pair a name for key
             name: 'name',
             // we write what prompt we will ask the user
-            message: 'What is your name?'
+            // adding (Required) will make it a required question
+            message: 'What is your name? (Required)',
+            // add validate function, must return a Boolean value
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                }
+                else {
+                    console.log('Name must be entered');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'github',
-            message: 'Enter your GitHub Username'
+            message: 'Enter your GitHub Username (Required)',
+            // add validate function, must return a Boolean value
+            validate: usernameInput => {
+                if (usernameInput) {
+                    return true;
+                }
+                else {
+                    console.log('Username must be entered');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
@@ -54,12 +75,32 @@ const promptProject = portfolioData => {
         {
             type: 'input',
             name: 'name',
-            message: 'What is the name of your project?'
+            message: 'What is the name of your project? (Required)',
+            // add validate function, must return a Boolean value
+            validate: projectNameInput => {
+                if (projectNameInput) {
+                    return true;
+                }
+                else {
+                    console.log('Project name must be entered');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'description',
-            message: 'Provide a description of the project (Required)'
+            message: 'Provide a description of the project (Required)',
+            // add validate function, must return a Boolean value
+            validate: projectDescriptionInput => {
+                if (projectDescriptionInput) {
+                    return true;
+                }
+                else {
+                    console.log('Project description must be entered');
+                    return false;
+                }
+            }
         },
         {
             // the checkbox type gives a list to choose from
@@ -71,7 +112,17 @@ const promptProject = portfolioData => {
         {
             type: 'input',
             name: 'link',
-            message: 'Enter the GitHub link to your project. (Required)'
+            message: 'Enter the GitHub link to your project. (Required)',
+            // add validate function, must return a Boolean value
+            validate: projectLinkInput => {
+                if (projectLinkInput) {
+                    return true;
+                }
+                else {
+                    console.log('Project link must be entered');
+                    return false;
+                }
+            }
         },
         {
             // the confirm type simply asks you to confirm yes or no
