@@ -42,10 +42,26 @@ const promptUser = () => {
             }
         },
         {
+            type: 'confirm',
+            name: 'confirmAbout',
+            message: 'Provide some information about yourself?',
+            default: true
+        },
+        {
             type: 'input',
             name: 'about',
-            message: 'Provide some information about yourself:'
-        }
+            message: 'Provide info about yourself',
+            // this is another function like validate
+            // it says, hey if you reply true to confirmAbout we will add this section
+            when: ({ confirmAbout }) => {
+                if (confirmAbout) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }    
     ]);
 };
 
